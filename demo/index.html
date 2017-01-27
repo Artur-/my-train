@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>my-train demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../paper-slider/paper-slider.html">
+    <link rel="import" href="../my-train.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic my-train demo</h3>
+          <my-train id="train"></my-train>
+    </div>
+    <script>
+    train.addEventListener("seat-click", function(e) {
+      var id = e.detail.seat;
+      var reserved = true;
+      if (train.seats[id].color == "red") {
+        reserved = false;
+      }
+      var color = reserved ? "red" : "#B8E986";
+
+      train.set("seats."+id+".color",color);
+      if (reserved)
+        window.alert("Seat "+id+" is now reserved");
+    });
+    </script>
+  </body>
+</html>
